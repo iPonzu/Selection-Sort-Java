@@ -21,12 +21,13 @@ public class source {
     public static void main(String[] args) {
          
     System.out.println("Atividade com Selection Sort");
+
         String numeros = new String();
-        String arq = "C:/Users/João/OneDrive/Área de Trabalho/Java/listaNumeros.txt";
+        String arq = "C:/Users/João/OneDrive/Área de Trabalho/Java/listaNumeros.txt"; // string indicatido de diretório
 
         File file = new File (arq);
 
-        if(file.exists()){
+        if(file.exists()){ 
             try{
                 FileReader ler = new FileReader(arq); 
                 BufferedReader bufferReader = new BufferedReader(ler); // leitura do arquivo 
@@ -37,7 +38,7 @@ public class source {
                 bufferReader.close();                                   
 
                 int[] lista = new int[linhas];
-                ler = new FileReader(arq);
+                ler = new FileReader(arq); // ler arquivo designado
                 bufferReader = new BufferedReader(ler); // relendo o arquivo
                 linhas = 0;
                 String linha = ""; // leitura linha por linha do arquivo de texto
@@ -47,15 +48,31 @@ public class source {
                 }
                 bufferReader.close(); // fecha reader
                 System.out.println("Array desordenado: ");
-                System.out.println(Arrays.toString(lista));
-                SortedSet<Integer> list = new TreeSet<Integer>();
+                System.out.println(Arrays.toString(lista)); // conversão de array para string
+                SortedSet<Integer> list = new TreeSet<Integer>(); // metodo selection
                 for (int i = 0; i < lista.length; i++){
                     list.add(lista[i]);
                 }
                 System.out.println();
-                System.out.println("Collection ordenada: ");
-                System.out.println(list);
+
+                System.out.println("Ordenação: ");    // ordenação da lista
+                int n = lista.length;
+                for (int i = 0; i < n - 1; i++)
+                    for (int j = 0; j < n - i - 1; j++)
+                    if (lista[j] > lista[j + 1]) {
+                        // troca de lista lista[j+1] and lista[j]
+                        int temp = lista[j];
+                        lista[j] = lista[j + 1];
+                        lista[j + 1] = temp;
+
+                    System.out.println(Arrays.toString(lista)); // impressão da ordem
                 
+                }
+
+
+                System.out.println("Collection ordenada: ");
+                System.out.println(list); // imprime lista
+                 
 
                 for(int i = 0; i< lista.length; i++){
                     int min = i;
@@ -74,13 +91,9 @@ public class source {
 
                 System.out.println("Array ordenado: ");
                 System.out.println(Arrays.toString(lista));
-                
-            
-        
-
                
             } catch (IOException e) {
-                System.out.println("Erro, tente novamente!" + e.getMessage());
+                System.out.println("Erro, tente novamente!" + e.getMessage()); //"mostra o erro junto com a mensagem"
             }
             
         }
